@@ -15,6 +15,7 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 - Microsoft Azure (Virtual Machines/Compute)
 - Remote Desktop
 - Internet Information Services (IIS)
+- MySQL
 
 <h2>Operating Systems Used </h2>
 
@@ -29,7 +30,7 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 <h2>Installation Steps</h2>
 
 <p>
-First things first we will have to create a Virtual machine using the Microsoft Azure portal. We will be using a VM which is a remote computer. We are using a VM in order to protect our physical machine just in case something breaks. Create a resource group and title it "osTicket". Afterwards create a VM with 2-4 CPUs. In this example I will be using 4 CPUs.
+We start off creating a resource group titled osTicket to house the VM that will be used for this tutorial.
 <p>  
 <img src="https://i.imgur.com/kv7LLJT.png" height="80%" width="80%" alt="VM"/>
 </p>
@@ -37,14 +38,14 @@ First things first we will have to create a Virtual machine using the Microsoft 
 <br />
 
 <p>
-Next simply connect to your newly created VM using RDP using the public IPv4 address. If you are a Mac user you will have to download Microsoft RDP. 
+Then we move on to connect to the VM with RDP using the public IPv4 address. 
 </p>
 <img src="https://i.imgur.com/RiEHjVH.png" height="80%" width="80%" alt="RDP"/>
 </p>
 <br />
 
 <p>
-Alright, now that you are connected to your VM you will have to enable IIS. Simply access the control panel then select uninstall a program. Off to the left select "Turn windows features on or off". A list will appear then you will enable Internet Information Services.
+So now we are connected to the VM. We have to enable IIS. By going to the control panel then select uninstall a program. On the left select "Turn windows features on or off". A list will appear then you will enable Internet Information Services.
 </p> 
 <p>
 <img src="https://i.imgur.com/qtEnuWu.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -52,13 +53,14 @@ Alright, now that you are connected to your VM you will have to enable IIS. Simp
 <br />
 
 <p>
-Excellent. Now that you have enabled IIS we need to install Web Platform Installer. 
+Now that, that is enabled we have to install Web Platform Installer. 
 </p>
 <p>
 <img src="https://i.imgur.com/AxHCfQ6.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>  
 </p>
+
 <p>
-Once you have installed Web Installer Platform open it. From inside the application you are going to install MySQL 5.5 Afterwards install x86 version of PHP up until 7.3. There are some failed files such as C++ redistributable package as well as PHP 7.3.8 and PHP Manager for IIS those files can be found with the install link.
+We move on to install MySQL 5.5 Afterwards install x86 version of PHP up until 7.3. 
 </p>
 <img src="https://i.imgur.com/JJ8bZeJ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <p>
@@ -76,7 +78,7 @@ Open IIS Manager and restart the server. Once inside IIS manager go to Sites->De
 <br />
 
 <p>
-Go back into IIS manager and enable some extensions. To do this you have to go to Sites->Default->osTicket
+Go back into IIS manager and enable some extensions. In order to do this you have to go to Sites->Default->osTicket
 Then double click on PHP manager. Click on "Disable or enable an extension" Enable "php_intl.dll" & "php_opcache.dll" then refresh the osTicket webserver and obsereve the changes "Intl Extension" should now be enabled. 
 
 <img src="https://i.imgur.com/APZgUTT.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -96,12 +98,10 @@ Afterwards continue setting up osTicket in the browser (click continue) then you
 
 <img src="https://i.imgur.com/RmVk3q5.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
-
 <br />
 
 <p>
 Continue Setting up osticket in the browser MySQL Database: osTicket MySQL Username: root MySQL Password: Password1 Click “Install Now!”
-Congratulations, hopefully it is installed with no errors!
 Clean up
 Delete: C:\inetpub\wwwroot\osTicket\setup
 Set Permissions to “Read” only: C:\inetpub\wwwroot\osTicket\include\ost-config.php
